@@ -110,7 +110,7 @@
       margin-left: .5em
     }
 
-    .nav a.cta {
+    a.cta {
       font-family: "Sora", sans-serif;
       font-weight: 600;
       font-size: .85rem;
@@ -121,7 +121,7 @@
       border-radius: 6px;
     }
 
-    .nav a.cta:hover {
+    a.cta:hover {
       background: var(--accent)
     }
 
@@ -432,6 +432,20 @@
       margin-top: 20px
     }
 
+    /* contact */
+    .contact {
+      text-align: center
+    }
+
+    .contact .section-lede {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .contact .pilot-note a {
+      color: var(--ink)
+    }
+
     .contact-card {
       background: var(--floor);
       color: #dbe6ef;
@@ -516,6 +530,7 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#top">Stride<span>light</span><small>by Aym</small></a>
+      <!-- <a class="cta" href="https://calendly.com/YOUR-CALENDLY-NAME" target="_blank" rel="noopener">Book a call</a> -->
     </div>
   </header>
 
@@ -524,12 +539,12 @@
     <!-- ============ HERO ============ -->
     <div class="hero">
       <div class="wrap hero-copy">
-        <p class="eyebrow">Wearable laser projection · Gait rehabilitation</p>
+        <p class="eyebrow">Wearable gait rehabilitation</p>
         <h1>Gamified walking sessions, wherever your patient needs to walk</h1>
         <p class="lede">
           Stridelight is a wearable platform that projects interactive walking exercises
-          onto the floor in front of the patient — turning a prescribed walking regimen into
-          an engaging, goal-driven experience, and every session into objective gait data.
+          onto the floor in front of the patient. Recovery walking becomes a guided, motivating
+          activity — with the same device traveling from the ward to the clinic to the living room.
         </p>
       </div>
 
@@ -538,8 +553,16 @@
 
         <div class="wrap">
           <div class="video-shell">
-            <!-- Replace this placeholder with your Wistia embed code -->
-            <p class="video-placeholder">[ 2-minute introduction video — Wistia embed goes here ]</p>
+            <script src="https://fast.wistia.com/player.js" async></script>
+            <script src="https://fast.wistia.com/embed/nyc6xv998i.js" async type="module"></script>
+            <style>
+              wistia-player[media-id='nyc6xv998i']:not(:defined) {
+                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/nyc6xv998i/swatch');
+                display: block;
+                filter: blur(5px);
+                padding-top: 56.25%;
+              }
+            </style> <wistia-player media-id="nyc6xv998i" aspect="1.7777777777777777"></wistia-player>
           </div>
         </div>
       </div>
@@ -548,7 +571,7 @@
     <!-- ============ CONCEPT ============ -->
     <section class="alt" id="concept">
       <div class="wrap">
-        <h2>Interactive floors work. They just can't follow the patient.</h2>
+        <h2>A guided walking environment the patient carries with them</h2>
         <p class="section-lede">
           Pacing lights on running tracks and interactive exercise floors share one insight:
           a cue to follow, instant feedback, and a visible goal keep people moving. But these
@@ -565,8 +588,8 @@
               </svg>
             </div>
             <h3>Worn, not installed</h3>
-            <p>The patient wears a compact laser projector and simply walks. The exercise is
-              projected onto the ground ahead — in a hospital corridor, a clinic, or a hallway at home.</p>
+            <p>A compact projector the patient wears. The exercise appears on the ground ahead — a corridor, a clinic, a
+              hallway at home.</p>
           </div>
           <div class="col">
             <div class="glyph" aria-hidden="true">
@@ -576,9 +599,9 @@
                 <path d="M12 3v7" />
               </svg>
             </div>
-            <h3>Stabilized to the floor</h3>
-            <p>Our stabilization system anchors the projection to the ground: the patient moves,
-              the target stays put. It behaves exactly like an interactive floor — except it works anywhere.</p>
+            <h3>Locked to the ground</h3>
+            <p>The patient moves; the target stays put. It behaves like an interactive floor — except it works anywhere.
+            </p>
           </div>
           <div class="col">
             <div class="glyph" aria-hidden="true">
@@ -586,11 +609,24 @@
                 <path d="M7 20V9M11 20V9M7 9h4M15 20v-6l3-3M18 11l2 2" />
               </svg>
             </div>
-            <h3>Compatible with assisted walking</h3>
-            <p>Because the patient walks at their own pace, Stridelight works with a walker, a cane,
-              parallel bars, or a caregiver's arm. It adapts to the patient — not the other way around.</p>
+            <h3>Works with assisted walking</h3>
+            <p>Alongside a walker, a cane, parallel bars, or a caregiver's arm. It adapts to the patient.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h3>Contact</h3>
+        <!--
+        <p class="section-lede">
+          We'd love to hear from clinicians, rehabilitation teams, and partners.
+        </p>
+      -->
+        <!-- <a class="cta" href="https://calendly.com/YOUR-CALENDLY-NAME" target="_blank" rel="noopener">Book a call</a> -->
+        <p class="pilot-note"><a href="mailto:info@aymlabs.com">info@aymlabs.com</a></p>
       </div>
     </section>
 
@@ -600,7 +636,7 @@
     <div class="wrap">
       <span>© 2026 Aym. Stridelight is an investigational prototype and is not currently a cleared or approved medical
         device.</span>
-      <span>aymlabs.com</span>
+      <!-- <span><a href="mailto:info@aymlabs.com">info@aymlabs.com</a></span> -->
     </div>
   </footer>
 
