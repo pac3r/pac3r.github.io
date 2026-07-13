@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stridelight — Gamified walking rehabilitation, anywhere | Aym</title>
+  <meta name="description"
+        content="Stridelight is a wearable laser-projection platform that turns prescribed walking into an engaging, goal-driven exercise — in hospital, in clinic, or at home. Seeking a U.S. Founding Clinical Partner.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1c2733;
+      --ink-soft: #46566a;
+      --paper: #f7f9fa;
+      --panel: #ffffff;
+      --floor: #0e1621;
+      --laser: #5ff0a0;
+      --laser-dim: rgba(95, 240, 160, .35);
+      --accent: #0e8a62;
+      --rule: #dde5ea;
+      --max: 1060px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Sora", sans-serif;
+      line-height: 1.2
+    }
+
+    a {
+      color: var(--accent)
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", monospace
+    }
+
+    /* ---------- header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 249, 250, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px
+    }
+
+    .brand {
+      font-family: "Sora", sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -.01em
+    }
+
+    .brand span {
+      color: var(--accent)
+    }
+
+    .brand small {
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 400;
+      color: var(--ink-soft);
+      font-size: .75rem;
+      margin-left: .5em
+    }
+
+    .nav a.cta {
+      font-family: "Sora", sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+      background: var(--ink);
+      text-decoration: none;
+      padding: .55em 1.1em;
+      border-radius: 6px;
+    }
+
+    .nav a.cta:hover {
+      background: var(--accent)
+    }
+
+    /* ---------- hero with projected-laser floor ---------- */
+    .hero {
+      background: linear-gradient(var(--paper) 0%, var(--paper) 55%, var(--floor) 55.05%);
+      padding: 64px 0 0;
+    }
+
+    .hero-copy {
+      max-width: 680px
+    }
+
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4.6vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 18px
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      color: var(--ink-soft);
+      max-width: 600px;
+      margin-bottom: 36px
+    }
+
+    /* the signature: a dark floor plane receiving projected laser targets */
+    .floor {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 0 72px;
+    }
+
+    .floor-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(to right, rgba(255, 255, 255, .03) 0 1px, transparent 1px 120px),
+        linear-gradient(to bottom, rgba(255, 255, 255, .05), transparent 40%);
+    }
+
+    .video-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 10px;
+      aspect-ratio: 16/9;
+      box-shadow: 0 0 0 1px rgba(95, 240, 160, .25), 0 18px 60px rgba(0, 0, 0, .55), 0 0 80px var(--laser-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /*
+    ── VIDEO EMBED ─────────────────────────────────────────────
+    Replace this whole .video-shell inner block with your Wistia
+    embed code. Keep the outer .video-shell div for the styling.
+    ────────────────────────────────────────────────────────────
+  */
+    .video-placeholder {
+      color: #9fb3c8;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .85rem;
+      text-align: center;
+      padding: 20px
+    }
+
+    .laser-track {
+      position: relative;
+      z-index: 1;
+      height: 120px;
+      margin-top: -20px;
+    }
+
+    .target {
+      position: absolute;
+      bottom: 24px;
+      width: 120px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--laser);
+      box-shadow: 0 0 18px var(--laser-dim), inset 0 0 14px var(--laser-dim);
+      opacity: .85;
+    }
+
+    .target::after {
+      content: "";
+      position: absolute;
+      inset: 9px 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--laser);
+      opacity: .7;
+    }
+
+    .t1 {
+      left: 12%;
+      transform: scale(.7);
+      animation: pulse 3.2s ease-in-out infinite
+    }
+
+    .t2 {
+      left: 44%;
+      animation: pulse 3.2s ease-in-out 1.05s infinite
+    }
+
+    .t3 {
+      left: 74%;
+      transform: scale(1.2);
+      animation: pulse 3.2s ease-in-out 2.1s infinite
+    }
+
+    .pace {
+      position: absolute;
+      bottom: 40px;
+      left: -30%;
+      width: 26%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--laser));
+      box-shadow: 0 0 12px var(--laser);
+      animation: pace 6s linear infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .45
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    @keyframes pace {
+      to {
+        left: 110%
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .t1,
+      .t2,
+      .t3 {
+        animation: none;
+        opacity: .85
+      }
+
+      .pace {
+        animation: none;
+        left: 38%
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+
+    .floor-caption {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #7f93a8;
+      font-size: .85rem;
+      font-family: "IBM Plex Mono", monospace;
+      margin-top: 10px;
+    }
+
+    .floor-caption b {
+      color: var(--laser);
+      font-weight: 500
+    }
+
+    /* ---------- sections ---------- */
+    section {
+      padding: 72px 0
+    }
+
+    section.alt {
+      background: var(--panel);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule)
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      letter-spacing: -.015em;
+      margin-bottom: 14px
+    }
+
+    .section-lede {
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin-bottom: 40px
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px
+    }
+
+    .col h3 {
+      font-size: 1.05rem;
+      margin: 14px 0 8px
+    }
+
+    .col p {
+      color: var(--ink-soft);
+      font-size: .98rem
+    }
+
+    .glyph {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--floor);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glyph svg {
+      stroke: var(--laser);
+      fill: none;
+      stroke-width: 1.8;
+      width: 24px;
+      height: 24px
+    }
+
+    .metrics {
+      margin-top: 44px;
+      padding: 22px 26px;
+      background: var(--floor);
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 30px;
+      align-items: center;
+    }
+
+    .metrics span {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .82rem;
+      color: var(--laser);
+      letter-spacing: .03em;
+    }
+
+    .metrics .label {
+      color: #8fa3b8;
+      text-transform: uppercase;
+      font-size: .72rem;
+      letter-spacing: .1em
+    }
+
+    /* pilot */
+    .pilot-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 56px;
+      align-items: start
+    }
+
+    .provide {
+      list-style: none;
+      margin-top: 8px
+    }
+
+    .provide li {
+      padding: 14px 0 14px 30px;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink)
+    }
+
+    .provide li:last-child {
+      border-bottom: none
+    }
+
+    .provide li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 22px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+    }
+
+    .pilot-note {
+      color: var(--ink-soft);
+      font-size: .95rem;
+      margin-top: 20px
+    }
+
+    .contact-card {
+      background: var(--floor);
+      color: #dbe6ef;
+      border-radius: 12px;
+      padding: 34px 32px;
+    }
+
+    .contact-card h3 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 10px
+    }
+
+    .contact-card p {
+      color: #9fb3c8;
+      font-size: .95rem;
+      margin-bottom: 22px
+    }
+
+    .contact-card a.btn {
+      display: inline-block;
+      font-family: "Sora", sans-serif;
+      font-weight: 600;
+      background: var(--laser);
+      color: var(--floor);
+      text-decoration: none;
+      padding: .7em 1.4em;
+      border-radius: 7px;
+      font-size: .95rem;
+    }
+
+    .contact-card a.btn:hover {
+      filter: brightness(1.08)
+    }
+
+    .contact-card .who {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      font-size: .9rem
+    }
+
+    .contact-card .who b {
+      color: #fff
+    }
+
+    footer {
+      padding: 36px 0 48px;
+      color: var(--ink-soft);
+      font-size: .85rem
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    @media (max-width:820px) {
+      .cols {
+        grid-template-columns: 1fr
+      }
+
+      .pilot-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero {
+        padding-top: 44px
+      }
+
+      section {
+        padding: 56px 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">Stride<span>light</span><small>by Aym</small></a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <div class="hero">
+      <div class="wrap hero-copy">
+        <p class="eyebrow">Wearable laser projection · Gait rehabilitation</p>
+        <h1>Gamified walking sessions, wherever your patient needs to walk</h1>
+        <p class="lede">
+          Stridelight is a wearable platform that projects interactive walking exercises
+          onto the floor in front of the patient — turning a prescribed walking regimen into
+          an engaging, goal-driven experience, and every session into objective gait data.
+        </p>
+      </div>
+
+      <div class="floor">
+        <div class="floor-lines" aria-hidden="true"></div>
+
+        <div class="wrap">
+          <div class="video-shell">
+            <!-- Replace this placeholder with your Wistia embed code -->
+            <p class="video-placeholder">[ 2-minute introduction video — Wistia embed goes here ]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CONCEPT ============ -->
+    <section class="alt" id="concept">
+      <div class="wrap">
+        <h2>Interactive floors work. They just can't follow the patient.</h2>
+        <p class="section-lede">
+          Pacing lights on running tracks and interactive exercise floors share one insight:
+          a cue to follow, instant feedback, and a visible goal keep people moving. But these
+          systems are fixed in place — costly, confined to one room, unable to follow a patient
+          down the corridor, let alone home. Stridelight carries the same principle on the body.
+        </p>
+
+        <div class="cols">
+          <div class="col">
+            <div class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="5" r="2.4" />
+                <path d="M12 8v5l-3 6M12 13l3 6M7 10l5-1 5 2" />
+              </svg>
+            </div>
+            <h3>Worn, not installed</h3>
+            <p>The patient wears a compact laser projector and simply walks. The exercise is
+              projected onto the ground ahead — in a hospital corridor, a clinic, or a hallway at home.</p>
+          </div>
+          <div class="col">
+            <div class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <ellipse cx="12" cy="17" rx="8" ry="3.4" />
+                <ellipse cx="12" cy="17" rx="3.6" ry="1.5" />
+                <path d="M12 3v7" />
+              </svg>
+            </div>
+            <h3>Stabilized to the floor</h3>
+            <p>Our stabilization system anchors the projection to the ground: the patient moves,
+              the target stays put. It behaves exactly like an interactive floor — except it works anywhere.</p>
+          </div>
+          <div class="col">
+            <div class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 20V9M11 20V9M7 9h4M15 20v-6l3-3M18 11l2 2" />
+              </svg>
+            </div>
+            <h3>Compatible with assisted walking</h3>
+            <p>Because the patient walks at their own pace, Stridelight works with a walker, a cane,
+              parallel bars, or a caregiver's arm. It adapts to the patient — not the other way around.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Aym. Stridelight is an investigational prototype and is not currently a cleared or approved medical
+        device.</span>
+      <span>aymlabs.com</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>
