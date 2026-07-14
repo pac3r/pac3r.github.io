@@ -198,13 +198,18 @@
       line-height: 1.5;
       color: var(--ink-soft);
       max-width: 640px;
-      margin-bottom: 36px
+      margin-bottom: 20px
     }
 
     /* video sits on the page, flush with the copy above it */
     .floor {
       position: relative;
-      padding: 40px 0 72px;
+      padding: 12px 0 0;
+    }
+
+    /* keep the video the same width as the hero copy above it */
+    .floor .wrap {
+      max-width: 688px;
     }
 
     .floor-lines {
@@ -217,10 +222,11 @@
       margin: 0;
       background: #000;
       border-radius: 10px;
-      aspect-ratio: 16/9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+    }
+
+    .video-shell wistia-player {
+      display: block;
     }
 
     /*
@@ -347,7 +353,7 @@
 
     /* ---------- sections ---------- */
     section {
-      padding: 72px 0
+      padding: 42px 0
     }
 
     section.alt {
@@ -356,17 +362,25 @@
 
     h2 {
       font-family: var(--font-serif);
-      font-weight: 700;
+      font-weight: 400;
       font-size: clamp(1.75rem, 3.2vw, 2.4rem);
       letter-spacing: -.02em;
       line-height: 1.1;
       margin-bottom: 16px
     }
 
+    /* keep section text in the same narrow column as the hero copy */
+    section .wrap {
+      max-width: 688px;
+      margin: 0 auto;
+    }
+
     .section-lede {
+      font-size: 1.25rem;
+      line-height: 1.5;
       color: var(--ink-soft);
       max-width: 640px;
-      margin-bottom: 40px
+      margin-bottom: 16px
     }
 
     .cols {
@@ -621,55 +635,24 @@
     <!-- ============ CONCEPT ============ -->
     <section class="alt" id="concept">
       <div class="wrap">
-        <h2>A guided walking environment the patient carries with them</h2>
+        <h2>Where could this be useful?</h2>
         <p class="section-lede">
-          Pacing lights on running tracks and interactive exercise floors share one insight:
-          a cue to follow, instant feedback, and a visible goal keep people moving. But these
-          systems are fixed in place — costly, confined to one room, unable to follow a patient
-          down the corridor, let alone home. Stridelight carries the same principle on the body.
+          We're still discovering the answer.
         </p>
-
-        <div class="cols">
-          <div class="col">
-            <div class="glyph" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="5" r="2.4" />
-                <path d="M12 8v5l-3 6M12 13l3 6M7 10l5-1 5 2" />
-              </svg>
-            </div>
-            <h3>Worn, not installed</h3>
-            <p>A compact projector the patient wears. The exercise appears on the ground ahead — a corridor, a clinic, a
-              hallway at home.</p>
-          </div>
-          <div class="col">
-            <div class="glyph" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <ellipse cx="12" cy="17" rx="8" ry="3.4" />
-                <ellipse cx="12" cy="17" rx="3.6" ry="1.5" />
-                <path d="M12 3v7" />
-              </svg>
-            </div>
-            <h3>Locked to the ground</h3>
-            <p>The patient moves; the target stays put. It behaves like an interactive floor — except it works anywhere.
-            </p>
-          </div>
-          <div class="col">
-            <div class="glyph" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 20V9M11 20V9M7 9h4M15 20v-6l3-3M18 11l2 2" />
-              </svg>
-            </div>
-            <h3>Works with assisted walking</h3>
-            <p>Alongside a walker, a cane, parallel bars, or a caregiver's arm. It adapts to the patient.</p>
-          </div>
-        </div>
+        <p class="section-lede">
+          Different clinicians have already suggested applications ranging from stroke rehabilitation and Parkinson's
+          disease to pediatrics, orthopedic recovery and research.
+        </p>
+        <p class="section-lede">
+          We're curious which possibilities you see.
+        </p>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
       <div class="wrap">
-        <h3>Contact</h3>
+        <h2>Contact</h2>
         <!--
         <p class="section-lede">
           We'd love to hear from clinicians, rehabilitation teams, and partners.
