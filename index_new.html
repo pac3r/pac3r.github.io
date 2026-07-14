@@ -9,20 +9,34 @@
         content="Stridelight is a wearable laser-projection platform that turns prescribed walking into an engaging, goal-driven exercise — in hospital, in clinic, or at home. Seeking a U.S. Founding Clinical Partner.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@500;600&display=swap"
         rel="stylesheet">
   <style>
     :root {
-      --ink: #1c2733;
-      --ink-soft: #46566a;
-      --paper: #f7f9fa;
+      /* Aym brand palette (from index_andrew) */
+      --aym-blue: #004F71;
+      --aym-blue-deep: #003B55;
+      --aym-yellow: #FFB81C;
+      --pale-blue: #DDE5ED;
+      --sky-blue: #8DB9CA;
+      --near-black: #1C1F2A;
+      --off-white: #F2F3F4;
+      --deep-orange: #ED8B00;
+      --ink: var(--near-black);
+      --ink-soft: #4A4F5E;
+      --ink-faint: #6E7383;
+      --paper: var(--off-white);
       --panel: #ffffff;
-      --floor: #0e1621;
-      --laser: #5ff0a0;
-      --laser-dim: rgba(95, 240, 160, .35);
-      --accent: #0e8a62;
-      --rule: #dde5ea;
+      --floor: var(--near-black);
+      --laser: var(--aym-yellow);
+      --laser-dim: rgba(255, 184, 28, .35);
+      --accent: var(--aym-blue);
+      --rule: rgba(28, 31, 42, 0.14);
+      --rule-strong: rgba(28, 31, 42, 0.4);
       --max: 1060px;
+      --font-body: "Source Sans 3", "Source Sans Pro", -apple-system, "Segoe UI", sans-serif;
+      --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+      --font-logo: "Outfit", var(--font-body);
     }
 
     * {
@@ -36,23 +50,31 @@
     }
 
     body {
-      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-size: 17px;
-      line-height: 1.65;
+      line-height: 1.6;
       color: var(--ink);
       background: var(--paper);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     h1,
     h2,
     h3 {
-      font-family: "Sora", sans-serif;
-      line-height: 1.2
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.12
     }
 
     a {
-      color: var(--accent)
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px
+    }
+
+    a:hover {
+      color: var(--aym-blue-deep)
     }
 
     a:focus-visible,
@@ -62,6 +84,10 @@
       border-radius: 2px
     }
 
+    ::selection {
+      background: var(--pale-blue)
+    }
+
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -69,7 +95,7 @@
     }
 
     .mono {
-      font-family: "IBM Plex Mono", monospace
+      font-family: var(--font-logo)
     }
 
     /* ---------- header ---------- */
@@ -77,8 +103,8 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(247, 249, 250, .92);
-      backdrop-filter: blur(8px);
+      background: rgba(242, 243, 244, .92);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--rule);
     }
 
@@ -90,99 +116,108 @@
     }
 
     .brand {
-      font-family: "Sora", sans-serif;
+      font-family: var(--font-serif);
       font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--ink);
+      font-size: 1.4375rem;
+      color: var(--aym-blue);
       text-decoration: none;
       letter-spacing: -.01em
     }
 
     .brand span {
-      color: var(--accent)
+      color: var(--aym-blue)
     }
 
     .brand small {
-      font-family: "Source Sans 3", sans-serif;
+      font-family: var(--font-body);
       font-weight: 400;
-      color: var(--ink-soft);
-      font-size: .75rem;
+      color: var(--ink-faint);
+      font-size: .78rem;
       margin-left: .5em
     }
 
     a.cta {
-      font-family: "Sora", sans-serif;
+      font-family: var(--font-body);
       font-weight: 600;
       font-size: .85rem;
       color: #fff;
-      background: var(--ink);
+      background: var(--aym-blue);
       text-decoration: none;
-      padding: .55em 1.1em;
-      border-radius: 6px;
+      padding: .8em 1.6em;
+      border: 1px solid var(--aym-blue);
+      border-radius: 0;
     }
 
     a.cta:hover {
-      background: var(--accent)
+      background: var(--aym-blue-deep);
+      border-color: var(--aym-blue-deep);
+      color: #fff
     }
 
-    /* ---------- hero with projected-laser floor ---------- */
+    /* ---------- hero ---------- */
     .hero {
-      background: linear-gradient(var(--paper) 0%, var(--paper) 55%, var(--floor) 55.05%);
+      background: var(--paper);
       padding: 64px 0 0;
     }
 
     .hero-copy {
-      max-width: 680px
+      max-width: 640px
     }
 
     .eyebrow {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: .78rem;
-      letter-spacing: .08em;
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      font-family: var(--font-body);
+      font-size: .9375rem;
+      font-weight: 600;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
+      color: var(--aym-blue);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: .4375rem;
+      height: .4375rem;
+      background: var(--aym-yellow);
     }
 
     h1 {
-      font-size: clamp(1.9rem, 4.6vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin-bottom: 18px
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.8vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -.01em;
+      line-height: 1.08;
+      margin-bottom: 24px
     }
 
     .lede {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
       color: var(--ink-soft);
-      max-width: 600px;
+      max-width: 640px;
       margin-bottom: 36px
     }
 
-    /* the signature: a dark floor plane receiving projected laser targets */
+    /* video sits on the page, flush with the copy above it */
     .floor {
       position: relative;
-      overflow: hidden;
-      padding: 48px 0 72px;
+      padding: 40px 0 72px;
     }
 
     .floor-lines {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        repeating-linear-gradient(to right, rgba(255, 255, 255, .03) 0 1px, transparent 1px 120px),
-        linear-gradient(to bottom, rgba(255, 255, 255, .05), transparent 40%);
+      display: none;
     }
 
     .video-shell {
       position: relative;
       z-index: 2;
-      max-width: 760px;
-      margin: 0 auto;
+      margin: 0;
       background: #000;
       border-radius: 10px;
       aspect-ratio: 16/9;
-      box-shadow: 0 0 0 1px rgba(95, 240, 160, .25), 0 18px 60px rgba(0, 0, 0, .55), 0 0 80px var(--laser-dim);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -196,7 +231,7 @@
   */
     .video-placeholder {
       color: #9fb3c8;
-      font-family: "IBM Plex Mono", monospace;
+      font-family: var(--font-logo);
       font-size: .85rem;
       text-align: center;
       padding: 20px
@@ -298,9 +333,10 @@
       position: relative;
       z-index: 2;
       text-align: center;
-      color: #7f93a8;
+      color: var(--sky-blue);
       font-size: .85rem;
-      font-family: "IBM Plex Mono", monospace;
+      font-family: var(--font-logo);
+      letter-spacing: .04em;
       margin-top: 10px;
     }
 
@@ -316,14 +352,15 @@
 
     section.alt {
       background: var(--panel);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule)
     }
 
     h2 {
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      letter-spacing: -.015em;
-      margin-bottom: 14px
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 16px
     }
 
     .section-lede {
@@ -339,8 +376,11 @@
     }
 
     .col h3 {
-      font-size: 1.05rem;
-      margin: 14px 0 8px
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
+      margin: 16px 0 8px
     }
 
     .col p {
@@ -351,7 +391,7 @@
     .glyph {
       width: 44px;
       height: 44px;
-      border-radius: 8px;
+      border-radius: 0;
       background: var(--floor);
       display: flex;
       align-items: center;
@@ -370,7 +410,7 @@
       margin-top: 44px;
       padding: 22px 26px;
       background: var(--floor);
-      border-radius: 10px;
+      border-radius: 0;
       display: flex;
       flex-wrap: wrap;
       gap: 14px 30px;
@@ -378,14 +418,15 @@
     }
 
     .metrics span {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: .82rem;
+      font-family: var(--font-logo);
+      font-weight: 500;
+      font-size: .85rem;
       color: var(--laser);
-      letter-spacing: .03em;
+      letter-spacing: .04em;
     }
 
     .metrics .label {
-      color: #8fa3b8;
+      color: var(--sky-blue);
       text-transform: uppercase;
       font-size: .72rem;
       letter-spacing: .1em
@@ -434,22 +475,31 @@
 
     /* contact */
     .contact {
-      text-align: center
+      background: var(--aym-blue);
+      color: var(--off-white);
+    }
+
+    .contact h2,
+    .contact h3 {
+      color: #fff
     }
 
     .contact .section-lede {
-      margin-left: auto;
-      margin-right: auto
+      color: var(--pale-blue)
     }
 
     .contact .pilot-note a {
-      color: var(--ink)
+      color: var(--aym-yellow)
+    }
+
+    .contact .pilot-note a:hover {
+      color: var(--aym-yellow)
     }
 
     .contact-card {
       background: var(--floor);
       color: #dbe6ef;
-      border-radius: 12px;
+      border-radius: 0;
       padding: 34px 32px;
     }
 
@@ -467,18 +517,21 @@
 
     .contact-card a.btn {
       display: inline-block;
-      font-family: "Sora", sans-serif;
+      font-family: var(--font-body);
       font-weight: 600;
-      background: var(--laser);
-      color: var(--floor);
+      background: var(--aym-yellow);
+      color: var(--near-black);
       text-decoration: none;
-      padding: .7em 1.4em;
-      border-radius: 7px;
+      padding: .8em 1.6em;
+      border: 1px solid var(--aym-yellow);
+      border-radius: 0;
       font-size: .95rem;
     }
 
     .contact-card a.btn:hover {
-      filter: brightness(1.08)
+      background: var(--deep-orange);
+      border-color: var(--deep-orange);
+      color: var(--near-black)
     }
 
     .contact-card .who {
@@ -539,12 +592,11 @@
     <!-- ============ HERO ============ -->
     <div class="hero">
       <div class="wrap hero-copy">
-        <p class="eyebrow">Wearable gait rehabilitation</p>
-        <h1>Gamified walking sessions, wherever your patient needs to walk</h1>
+        <p class="eyebrow">A wearable platform for gamified walking</p>
+        <h1>A new way to engage patients in supervised walking</h1>
         <p class="lede">
-          Stridelight is a wearable platform that projects interactive walking exercises
-          onto the floor in front of the patient. Recovery walking becomes a guided, motivating
-          activity — with the same device traveling from the ward to the clinic to the living room.
+          Stridelight combines floor-stabilised projection with precise movement sensing, lighting, sound and scoring to
+          create responsive, goal-driven walking sessions.
         </p>
       </div>
 
@@ -557,9 +609,7 @@
             <script src="https://fast.wistia.com/embed/nyc6xv998i.js" async type="module"></script>
             <style>
               wistia-player[media-id='nyc6xv998i']:not(:defined) {
-                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/nyc6xv998i/swatch');
                 display: block;
-                filter: blur(5px);
                 padding-top: 56.25%;
               }
             </style> <wistia-player media-id="nyc6xv998i" aspect="1.7777777777777777"></wistia-player>
